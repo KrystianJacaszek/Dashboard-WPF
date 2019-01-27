@@ -20,5 +20,19 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <customControl:Widget Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Margin="0 0 0 20" Height="Auto">
+            <TextBlock Foreground="Black">Weather Widget</TextBlock>
+        </customControl:Widget>
+
+        <customControl:Widget Grid.Column="1" Grid.Row="0" Text="Clock Widget" />
+
+        <customControl:Widget Grid.Column="2" Grid.Row="0" Text="News Widget" />
+
+        <customControl:Widget Grid.Column="0" Grid.Row="1" Text="Notes Widget" />
+
+        <customControl:Widget Grid.Column="1" Grid.Row="1" Text="Todo Widget" />
+
+        <customControl:Widget Grid.Column="2" Grid.Row="1" Text="Quotes Widget" />
     </Grid>
 </Page>
