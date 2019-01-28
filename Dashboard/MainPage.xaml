@@ -17,7 +17,36 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+            </customControl:Widget>
+
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <customControl:Widget>
+                <customControl:ClockWidget />
+            </customControl:Widget>
+
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Todo Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <customControl:Widget>
+                <TextBlock Foreground="Black">News Widget</TextBlock>
+            </customControl:Widget>
+
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Quotes Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
     </Grid>
 </Page>
