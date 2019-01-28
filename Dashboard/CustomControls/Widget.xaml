@@ -6,17 +6,16 @@
     xmlns:local="using:Dashboard.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <Border Padding="20">
+    <Border Margin="15 15 16 15">
         <Grid>
-            <Border CornerRadius="20">
-                <Canvas Background="White" />
+            <Border CornerRadius="3">
+                <Canvas Background="#fafbfb" />
             </Border>
 
-            <Border Padding="20">
+            <Border BorderThickness="1" BorderBrush="#BF000000" CornerRadius="3" Padding="12 14 12 14">
                 <ContentPresenter Content="{Binding Children, ElementName=userControl}" Height="{Binding Children[0].ActualHeight, ElementName=userControl}" />
             </Border>
         </Grid>
