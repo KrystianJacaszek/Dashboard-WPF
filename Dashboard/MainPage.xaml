@@ -18,21 +18,36 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <customControl:Widget Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Margin="0 0 0 20" Height="Auto">
-            <TextBlock Foreground="Black">Weather Widget</TextBlock>
-        </customControl:Widget>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+            </customControl:Widget>
 
-        <customControl:Widget Grid.Column="1" Grid.Row="0" Text="Clock Widget" />
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
 
-        <customControl:Widget Grid.Column="2" Grid.Row="0" Text="News Widget" />
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <customControl:Widget>
+                <customControl:ClockWidget />
+            </customControl:Widget>
 
-        <customControl:Widget Grid.Column="0" Grid.Row="1" Text="Notes Widget" />
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Todo Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
 
-        <customControl:Widget Grid.Column="1" Grid.Row="1" Text="Todo Widget" />
+        <StackPanel Grid.Column="2" Grid.Row="0">
+            <customControl:Widget>
+                <TextBlock Foreground="Black">News Widget</TextBlock>
+            </customControl:Widget>
 
-        <customControl:Widget Grid.Column="2" Grid.Row="1" Text="Quotes Widget" />
+            <customControl:Widget>
+                <TextBlock Foreground="Black">Quotes Widget</TextBlock>
+            </customControl:Widget>
+        </StackPanel>
     </Grid>
 </Page>

@@ -10,23 +10,15 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <Grid Padding="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Canvas>
-            <controls:DropShadowPanel BlurRadius="4.0" ShadowOpacity="0.70" OffsetX="5.0" OffsetY="5.0" Color="Black">
-                <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Fill="White" RadiusX="20" RadiusY="20" Stretch="UniformToFill" Height="80" HorizontalAlignment="Stretch" />
-            </controls:DropShadowPanel>
+    <Border Padding="20">
+        <Grid>
+            <Border CornerRadius="20">
+                <Canvas Background="White" />
+            </Border>
 
             <Border Padding="20">
-                <ContentPresenter Content="{Binding Children, ElementName=userControl}" />
+                <ContentPresenter Content="{Binding Children, ElementName=userControl}" Height="{Binding Children[0].ActualHeight, ElementName=userControl}" />
             </Border>
-        </Canvas>
-    </Grid>
+        </Grid>
+    </Border>
 </UserControl>
