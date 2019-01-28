@@ -5,6 +5,7 @@
     xmlns:local="using:Dashboard"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customControls="using:Dashboard.CustomControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -20,33 +21,33 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Grid.Row="0">
-            <customControl:Widget>
+            <customControls:Widget>
                 <TextBlock Foreground="Black">Weather Widget</TextBlock>
-            </customControl:Widget>
+            </customControls:Widget>
 
-            <customControl:Widget>
+            <customControls:Widget>
                 <TextBlock Foreground="Black">Weather Widget</TextBlock>
-            </customControl:Widget>
+            </customControls:Widget>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <customControl:Widget>
-                <customControl:ClockWidget />
-            </customControl:Widget>
+            <customControls:Widget>
+                <customControls:ClockWidget />
+            </customControls:Widget>
 
-            <customControl:Widget>
+            <customControls:Widget>
                 <TextBlock Foreground="Black">Todo Widget</TextBlock>
-            </customControl:Widget>
+            </customControls:Widget>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="0">
-            <customControl:Widget>
+            <customControls:Widget>
                 <TextBlock Foreground="Black">News Widget</TextBlock>
-            </customControl:Widget>
+            </customControls:Widget>
 
-            <customControl:Widget>
+            <customControls:Widget>
                 <TextBlock Foreground="Black">Quotes Widget</TextBlock>
-            </customControl:Widget>
+            </customControls:Widget>
         </StackPanel>
     </Grid>
 </Page>
