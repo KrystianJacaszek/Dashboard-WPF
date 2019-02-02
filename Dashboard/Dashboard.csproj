@@ -188,6 +188,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Database\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

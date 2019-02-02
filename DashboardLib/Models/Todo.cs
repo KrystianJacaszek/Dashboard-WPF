@@ -11,12 +11,16 @@ namespace DashboardLib.Models
         public string Task { get; set; }
         public bool Done { get; set; }
 
+        public Todo() { }
+
         public Todo(string task)
         {
 
             this.Task = task;
-            Done = false;
+            this.Done = false;
         }
+
+       // [JsonConstructor]
         public Todo(string task,bool done)
         {
 
@@ -24,8 +28,6 @@ namespace DashboardLib.Models
             this.Done =done;
         }
 
-        public Todo GetTodo() {
-            return this;
-        }
+
     }
 }
