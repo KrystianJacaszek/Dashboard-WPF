@@ -26,7 +26,7 @@
             </customControls:Widget>
 
             <customControls:Widget>
-                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+                <customControls:NotesWidget/>
             </customControls:Widget>
         </StackPanel>
 
