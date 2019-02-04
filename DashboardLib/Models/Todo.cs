@@ -20,7 +20,6 @@ namespace DashboardLib.Models
             this.Done = false;
         }
 
-       // [JsonConstructor]
         public Todo(string task,bool done)
         {
 

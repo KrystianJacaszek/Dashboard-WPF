@@ -25,8 +25,6 @@ namespace Dashboard.CustomControls
 
         private ObservableCollection<Todo> todoList;
 
-       // public event PropertyChangedEventHandler PropertyChanged;
-
         public TodoWidget()
         {
 
