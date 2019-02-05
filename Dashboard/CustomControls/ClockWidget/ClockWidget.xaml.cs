@@ -9,10 +9,16 @@ namespace Dashboard.CustomControls
     {
         public ClockWidget()
         {
-            ClockModel clockModel = new ClockModel();
-            DataContext = clockModel;
+            DataContext = VM;
 
             InitializeComponent();
         }
+
+        private readonly ClockWidgetViewModel VM = new ClockWidgetViewModel();
+    }
+
+    class ClockWidgetViewModel
+    {
+        public ClockModel ClockModel { get; set; } = new ClockModel();
     }
 }
