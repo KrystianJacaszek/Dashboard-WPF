@@ -42,7 +42,7 @@
 
         <StackPanel Grid.Column="2" Grid.Row="0">
             <customControls:Widget>
-                <TextBlock Foreground="Black">News Widget</TextBlock>
+                <customControls:NewsWidget />
             </customControls:Widget>
 
             <customControls:Widget>
