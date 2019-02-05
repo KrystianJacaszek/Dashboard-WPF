@@ -128,6 +128,9 @@
     <Compile Include="CustomControls\ClockWidget\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
+      <DependentUpon>WeatherWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\Widget.xaml.cs">
       <DependentUpon>Widget.xaml</DependentUpon>
     </Compile>
@@ -143,7 +146,19 @@
     <None Include="Dashboard_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomControls\ClockWidget\Clock.svg" />
+    <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Cloud.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Cubes.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Error.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\MapMarker.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Warning.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Moon.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Question.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Snowflake.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Tint.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -159,6 +174,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CustomControls\ClockWidget\ClockWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
