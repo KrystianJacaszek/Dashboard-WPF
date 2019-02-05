@@ -12,6 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Storage;
 using System.Xml.Serialization;
+using DashboardLib.ViewModels;
 
 
 
@@ -23,16 +24,17 @@ namespace Dashboard.CustomControls
     public sealed partial class TodoWidget : UserControl
     {
 
-        private ObservableCollection<Todo> todoList;
+        private TodoWidgetViewModel todoWidgetViewModel = new TodoWidgetViewModel();
+
+        private ObservableCollection<TodoModel> todoList;
 
         public TodoWidget()
         {
 
-            TodoModel todoModel = new TodoModel();
-            DataContext = todoModel;
+            DataContext = todoWidgetViewModel;
             InitializeComponent();
 
-            todoList = new ObservableCollection<Todo>();
+            todoList = new ObservableCollection<TodoModel>();
 
             taskList.ItemsSource = todoList;
 
@@ -40,6 +42,7 @@ namespace Dashboard.CustomControls
 
             InitializeComponent();
         }
+
 
         public async System.Threading.Tasks.Task SaveListAsync() {
 
@@ -79,11 +82,11 @@ namespace Dashboard.CustomControls
                 Debug.WriteLine("laod");
                 Debug.WriteLine(text);
 
-                List<Todo> list = new List<Todo>();
+                List<TodoModel> list = new List<TodoModel>();
 
-                list = JsonConvert.DeserializeObject<List<Todo>>(text);
+                list = JsonConvert.DeserializeObject<List<TodoModel>>(text);
 
-                foreach (Todo task in list) {
+                foreach (TodoModel task in list) {
                     todoList.Add(task);
                 }
 
@@ -101,9 +104,11 @@ namespace Dashboard.CustomControls
 
         private void BtnAdd(object sender, RoutedEventArgs e)
             {
+            todoWidgetViewModel.btnAdd(sender);
+
             if (textBoxTaskInput.Text != String.Empty)
             {
-                todoList.Add(new Todo(textBoxTaskInput.Text));
+                todoList.Add(new TodoModel(textBoxTaskInput.Text));
                 taskList.ItemsSource = todoList;
                 textBoxTaskInput.Text = String.Empty;
                 Debug.WriteLine("BtnAdd");
@@ -116,13 +121,13 @@ namespace Dashboard.CustomControls
 
         private void BtnDel(object sender, RoutedEventArgs e)
         {
-            Todo x = ((Button)sender).Tag as Todo;
+            TodoModel x = ((Button)sender).Tag as TodoModel;
             todoList.Remove(x);
         }
 
         private void CheckChangeState(object sender, RoutedEventArgs e)
         {
-            Todo x = ((CheckBox)sender).Tag as Todo;
+            TodoModel x = ((CheckBox)sender).Tag as TodoModel;
             if (x.Done)
             {
                 todoList[todoList.IndexOf(x)].Done = false;

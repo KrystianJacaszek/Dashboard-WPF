@@ -121,9 +121,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models\ClockModel.cs" />
-    <Compile Include="Models\Todo.cs" />
     <Compile Include="Models\TodoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TodoWidgetViewModel.cs" />
     <EmbeddedResource Include="Properties\DashboardLib.rd.xml" />
   </ItemGroup>
   <ItemGroup>
