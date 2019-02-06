@@ -33,15 +33,22 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="textBoxTaskInput"
-                     Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="TaskTextBox"
                      VerticalAlignment="Stretch"
                      HorizontalAlignment="Stretch"
                      MaxLength="50"
                      Grid.Column="0" 
                      />
 
-            <Button x:Name="taskAdd" Click="BtnAdd" Grid.Column="1" Content="Add" Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Button
+                x:Name="taskAdd"
+                Click="TaskAdd_Click" 
+                Grid.Column="1"
+                Foreground="Black"
+                Content="Add"
+                Background="AliceBlue"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"/>
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
@@ -67,7 +74,7 @@
                     ><Run Text="To do list"/></TextBlock>
         </StackPanel>
 
-        <ItemsControl Grid.Column="0" Grid.Row="2" MinHeight="100" x:Name="taskList" ItemsSource="{Binding todoList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ItemsControl Grid.Column="0" Grid.Row="2" MinHeight="100" x:Name="taskList" ItemsSource="{Binding TodoList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Vertical"/>
@@ -89,10 +96,11 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Column="0" Grid.Row="0"
-                                   Text="{Binding Task}"
+                                   Text="{Binding Content}"
+                                   Foreground="Black"
                                    TextWrapping="Wrap"
                                    />
-                        <CheckBox Grid.Column="1" Grid.Row="0" MaxWidth="20" IsChecked="{Binding Done}" Tag="{Binding}" Click="CheckChangeState"/>
+                        <CheckBox Grid.Column="1" Grid.Row="0" MaxWidth="20" IsChecked="{Binding IsDone}" Tag="{Binding}" Click="CheckChangeState"/>
                         <Button Grid.Column="2" Grid.Row="0" Height="20" Width="20" Tag="{Binding}" Click="BtnDel">
          
 

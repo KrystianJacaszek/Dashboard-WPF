@@ -1,38 +1,51 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using System.ComponentModel;
 
 namespace DashboardLib.Models
 {
-
-
-    public class TodoModel
-
+    public class TodoModel : INotifyPropertyChanged
     {
-        public string Task { get; set; }
-        public bool Done { get; set; }
-
-        public TodoModel() { }
-
-        public TodoModel(string task)
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        
+        public TodoModel(string content)
         {
-
-            this.Task = task;
-            this.Done = false;
+            this.content = content;
+            status = TodoStatus.Unfinished;
         }
 
-        public TodoModel(string task, bool done)
+        public TodoModel(string content, TodoStatus status)
         {
-
-            this.Task = task;
-            this.Done = done;
+            this.content = content;
+            this.status = status;
         }
 
+        private string content;
+        private TodoStatus status;
+        
+        public string Content
+        {
+            get { return content; }
+            private set { if (value != content) { content = value; NotifyPropertyChanged("Content"); } }
+        }
 
+        public TodoStatus Status
+        {
+            get { return status; }
+            private set { if (value != status) { status = value; NotifyPropertyChanged("Status"); } }
+        }
 
+        public void ToggleStatus()
+        {
+            if (Status == TodoStatus.Unfinished)
+                Status = TodoStatus.Done;
+            else
+                Status = TodoStatus.Unfinished;
+        }
     }
-
-
+    
+    public enum TodoStatus
+    {
+        Unfinished = 1,
+        Done = 2,
+    }
 }
