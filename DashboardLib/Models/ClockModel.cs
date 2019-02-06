@@ -1,19 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using Windows.UI.Xaml;
 
 namespace DashboardLib.Models
 {
     public class ClockModel : INotifyPropertyChanged
     {
-        public ClockModel()
-        {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string CurrentDate
@@ -34,7 +25,7 @@ namespace DashboardLib.Models
             }
         }
 
-        private void Timer_Tick(object sender, object e)
+        public void Update()
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentDate"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentTime"));
