@@ -10,111 +10,90 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <TextBox x:Name="TaskTextBox"
-                     VerticalAlignment="Stretch"
-                     HorizontalAlignment="Stretch"
-                     MaxLength="50"
-                     Grid.Column="0" 
-                     />
-
-            <Button
-                x:Name="taskAdd"
-                Click="TaskAdd_Click" 
-                Grid.Column="1"
-                Foreground="Black"
-                Content="Add"
-                Background="AliceBlue"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"/>
-        </Grid>
-
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+    <UserControl.Resources>
+        <local:TodoStatusConverter x:Key="TodoStatusConverter" />
         
+        <SvgImageSource x:Key="TodoIcon" UriSource="Assets/Todo.svg" />
+    </UserControl.Resources>
 
-        <Image
-            Grid.Row="0"
-            Grid.Column="0"
-            Source="Todo.svg"
-            Height="40"
-            Width="40"
-            Margin="10"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-             />
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Image
+                Source="{StaticResource TodoIcon}"
+                Height="40"
+                Width="30"
+                VerticalAlignment="Center"
+                Margin="0 0 12 0" />
 
-            <TextBlock  HorizontalTextAlignment="Center"
-                        VerticalAlignment="Center"
-                        Margin="10"
-                        FontSize="20"
-                        FontWeight="SemiBold"
-                 
-                    ><Run Text="To do list"/></TextBlock>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Important tasks" Foreground="Black" FontSize="18" FontFamily="Lato" Margin="0 0 0 6" />
+                <TextBlock Text="Keep it all in sight" Foreground="Black" FontSize="14" FontFamily="Lato" />
+            </StackPanel>
         </StackPanel>
 
-        <ItemsControl Grid.Column="0" Grid.Row="2" MinHeight="100" x:Name="taskList" ItemsSource="{Binding TodoList}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-
-            </ItemsControl.ItemsPanel>
-
+        <ItemsControl ItemsSource="{Binding TodoList}" Grid.Column="0" Grid.Row="2" Margin="12 16 12 16">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Column="0" Grid.Row="0"
-                                   Text="{Binding Content}"
-                                   Foreground="Black"
-                                   TextWrapping="Wrap"
-                                   />
-                        <CheckBox Grid.Column="1" Grid.Row="0" MaxWidth="20" IsChecked="{Binding IsDone}" Tag="{Binding}" Click="CheckChangeState"/>
-                        <Button Grid.Column="2" Grid.Row="0" Height="20" Width="20" Tag="{Binding}" Click="BtnDel">
-         
+                        <CheckBox
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            IsChecked="{Binding Status, Converter={StaticResource TodoStatusConverter}}"
+                            Tag="{Binding Id}"
+                            Click="TodoCheckBox_Click" />
+                        
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="{Binding Content}"
+                            Foreground="Black"
+                            TextWrapping="Wrap" />
 
-                        </Button>
-
+                        <Button
+                            Grid.Column="2"
+                            Grid.Row="0"
+                            Tag="{Binding Id}"
+                            Foreground="Black"
+                            Click="TodoDeleteButton_Click">Delete</Button>
                     </Grid>
-
                 </DataTemplate>
-
             </ItemsControl.ItemTemplate>
-
         </ItemsControl>
 
- 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-    </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBox
+                x:Name="TaskTextBox"
+                Grid.Column="0"
+                Grid.Row="0"
+                MaxLength="50" />
+
+            <Button
+                x:Name="taskAdd"
+                Grid.Column="1"
+                Grid.Row="0"
+                Click="TaskAdd_Click" 
+                Foreground="Black"
+                Content="Add"
+                Background="AliceBlue" />
+        </Grid>
+    </StackPanel>
 </UserControl>

@@ -2,6 +2,9 @@
 using Windows.UI.Xaml.Controls;
 using DashboardLib.ViewModels;
 using System.Diagnostics;
+using Windows.UI.Xaml.Data;
+using System;
+using DashboardLib.Models;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -23,24 +26,6 @@ namespace Dashboard.CustomControls
 
         private readonly TodoWidgetViewModel VM;
 
-        private void BtnDel(object sender, RoutedEventArgs e)
-        {
-            // TodoModel x = ((Button)sender).Tag as TodoModel;
-            // todoList.Remove(x);
-        }
-
-        private void CheckChangeState(object sender, RoutedEventArgs e)
-        {
-            // TodoModel x = ((CheckBox)sender).Tag as TodoModel;
-            // if (x.Done)
-            // {
-            //     todoList[todoList.IndexOf(x)].Done = false;
-            // }else
-            // {
-            //     todoList[todoList.IndexOf(x)].Done = true;
-            // }
-        }
-
         private void TaskAdd_Click(object sender, RoutedEventArgs e)
         {
             string inputValue = TaskTextBox.Text;
@@ -52,6 +37,44 @@ namespace Dashboard.CustomControls
 
                 TaskTextBox.Text = string.Empty;
             }
+        }
+
+        private void TodoCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            string todoId = ((CheckBox)sender).Tag as string;
+
+            VM.ToggleTodoStatus(todoId);
+        }
+
+        private void TodoDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            string todoId = ((Button)sender).Tag as string;
+
+            VM.DeleteTodo(todoId);
+        }
+    }
+
+    public class TodoStatusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (targetType != typeof(bool))
+                throw new InvalidOperationException("The target must be a string");
+
+            switch (value)
+            {
+                case TodoStatus.Done:
+                    return true;
+
+                case TodoStatus.Unfinished:
+                default:
+                    return false;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotSupportedException();
         }
     }
 }

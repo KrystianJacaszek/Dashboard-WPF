@@ -1,6 +1,7 @@
 ﻿using DashboardLib.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace DashboardLib.ViewModels
 {
@@ -25,7 +26,23 @@ namespace DashboardLib.ViewModels
         public void AddTodo(string content)
         {
             TodoModel newTodo = new TodoModel(content);
-            todoList.Add(newTodo);
+            TodoList.Add(newTodo);
+
+            // SaveListAsync();
+        }
+
+        public void DeleteTodo(string id)
+        {
+            TodoModel targetTodo = TodoList.First(item => item.Id == id);
+            TodoList.Remove(targetTodo);
+
+            // SaveListAsync();
+        }
+
+        public void ToggleTodoStatus(string id)
+        {
+            TodoModel targetTodo = TodoList.First(item => item.Id == id);
+            targetTodo.ToggleStatus();
 
             // SaveListAsync();
         }
