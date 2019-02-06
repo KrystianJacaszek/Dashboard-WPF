@@ -73,7 +73,8 @@
                        Grid.Row="0"
                        Height="40"
                        Content="Clear"
-                       Margin="5" Click="Button_Click"
+                       Margin="5"
+                       Click="BtnClear"
                 />
         </Grid>
         <TextBox x:Name="NotesTextBox" Grid.Column="0"

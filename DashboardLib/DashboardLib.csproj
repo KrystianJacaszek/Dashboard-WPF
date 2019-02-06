@@ -123,6 +123,7 @@
     <Compile Include="Models\ClockModel.cs" />
     <Compile Include="Models\NotesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\NotesWidgetViewModel.cs" />
     <EmbeddedResource Include="Properties\DashboardLib.rd.xml" />
   </ItemGroup>
   <ItemGroup>
