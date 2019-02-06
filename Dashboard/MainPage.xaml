@@ -22,7 +22,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="0">
             <customControls:Widget>
-                <TextBlock Foreground="Black">Weather Widget</TextBlock>
+                <customControls:WeatherWidget />
             </customControls:Widget>
 
             <customControls:Widget>
