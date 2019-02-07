@@ -131,8 +131,8 @@
     <Compile Include="CustomControls\NewsWidget\NewsWidget.xaml.cs">
       <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
-      <DependentUpon>QuotesWidget.xaml</DependentUpon>
+    <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
+      <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\Widget.xaml.cs">
       <DependentUpon>Widget.xaml</DependentUpon>
@@ -150,8 +150,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomControls\ClockWidget\Clock.svg" />
-    <Content Include="CustomControls\NewsWidget\newspaper.svg" />
-    <Content Include="CustomControls\QuotesWidget\quote-right.svg" />
+    <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Cloud.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Cubes.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Error.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\MapMarker.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Warning.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Moon.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Question.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Snowflake.svg" />
+    <Content Include="CustomControls\WeatherWidget\Assets\Tint.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -174,7 +185,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
+    <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
