@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-   Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{025FC36A-C7A6-433E-9506-FC14E262841C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
@@ -183,8 +183,13 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\NewsWidget\NewsWidget.xaml">
+<<<<<<< HEAD
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+=======
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+>>>>>>> 2a754a5066ac459f655da9cd88331b5311ad2d9f
     </Page>
     <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>

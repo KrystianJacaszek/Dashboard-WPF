@@ -12,7 +12,7 @@ namespace DashboardLib.Models
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+       private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
         private ObservableCollection<NewsListEntry> newsList = new ObservableCollection<NewsListEntry>();
 
@@ -56,3 +56,4 @@ namespace DashboardLib.Models
         public string Image { get; set; }
     }
 }
+
