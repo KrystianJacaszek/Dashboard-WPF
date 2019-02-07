@@ -1,107 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace DashboardLib.Models
 {
-    //NEWS CLASSES
-    public class News
+    public class NewsModel : INotifyPropertyChanged
     {
-        public class Rootobject
+        public NewsModel(NewsListEntry[] newsList)
         {
-            public string status { get; set; }
-            public int totalResults { get; set; }
-            public Article[] articles { get; set; }
+            this.newsList = new ObservableCollection<NewsListEntry>(newsList);
         }
 
-        public class Article
-        {
-            public Source source { get; set; }
-            public string author { get; set; }
-            public string title { get; set; }
-            public string description { get; set; }
-            public string url { get; set; }
-            public string urlToImage { get; set; }
-            public DateTime publishedAt { get; set; }
-            public string content { get; set; }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
-        public class Source
+        private ObservableCollection<NewsListEntry> newsList = new ObservableCollection<NewsListEntry>();
+
+        public string CurrentTitle => newsList[0].Title;
+        public DateTime CurrentDate => newsList[0].Date;
+        public string CurrentNewsSource => newsList[0].NewsSource;
+        public string CurrentNewsUrl => newsList[0].NewsUrl;
+        public int CurrentNewsNumber => newsList[0].NewsNumber;
+        public string CurrentNewsDescription => newsList[0].NewsText;
+        public string CurrentImage => newsList[0].Image;
+
+        private ObservableCollection<NewsListEntry> NewsList
         {
-            public string id { get; set; }
-            public string name { get; set; }
-        }
-    }
-    public class Http
-    {
-        public static async Task<string> GetVsAsync(string uri)
-        {
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpClient client = new HttpClient();
-            string responseValue = string.Empty;
-            HttpResponseMessage response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
+            get { return newsList; }
+            set
             {
-                try
+                if (value != newsList)
                 {
-                    responseValue = await response.Content.ReadAsStringAsync();
-                }
-                catch (Exception exception)
-                {
-                    Debug.WriteLine(exception.ToString());
+                    newsList = value;
+                    NotifyPropertyChanged("CurrentTitle");
+                    NotifyPropertyChanged("CurrentDate");
+                    NotifyPropertyChanged("CurrentNewsSource");
+                    NotifyPropertyChanged("CurrentNewsUrl");
+                    NotifyPropertyChanged("CurrentNewsNumber");
+                    NotifyPropertyChanged("CurrentNewsDescription");
+                    NotifyPropertyChanged("CurrentImage");
                 }
             }
-            return responseValue;
-            /*
-            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return await reader.ReadToEndAsync();
-            }*/
         }
+
     }
-    public class Config
+
+    public class NewsListEntry
     {
-        public static async Task<News.Rootobject> Deserialize(string URI)
-        {
-            var json = await Http.GetVsAsync(URI);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<News.Rootobject>(json);
-        }
-    }
-    //NEWS CLASSES END
-
-    public class NewsModel
-    {
-        const string PL_SPORT = "https://newsapi.org/v2/top-headlines?country=pl&category=sports&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-        const string USA_ENTERTAIN_NEWS = "https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-        const string USA_SPORT_NEWS = "https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-        const string PL_TECH_NEWS = "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-        const string PL_BISS_NEWS = "https://newsapi.org/v2/top-headlines?country=pl&category=business&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-        const string PL_ENTERTAIN_NEWS = "https://newsapi.org/v2/top-headlines?country=pl&category=entertainment&apiKey=3d9608e2e5044857984732bfb6c0e0b2";
-
-        public List<string> URL_Collection;
-
-        public News.Rootobject Root { get; set; }
-        public int CurrentNewsPage { get; set; } = 1;
-        public int CurrentNewsSource { get; set; } = 0;
-
-        public void SetupList()
-        {
-            this.URL_Collection = new List<string>();
-            this.URL_Collection.Add(PL_BISS_NEWS);
-            this.URL_Collection.Add(PL_TECH_NEWS);
-            this.URL_Collection.Add(PL_ENTERTAIN_NEWS);
-            this.URL_Collection.Add(USA_ENTERTAIN_NEWS);
-            this.URL_Collection.Add(USA_SPORT_NEWS);
-            this.URL_Collection.Add(PL_SPORT);
-        }
-        public async void CallAPI()
-        {
-            CurrentNewsPage = 1;
-            Root = await Config.Deserialize(this.URL_Collection[CurrentNewsSource]);
-        }
+        public string Title { get; set; }
+        public DateTime Date { get; set; }
+        public string NewsSource { get; set; }
+        public string NewsUrl { get; set; }
+        public int NewsNumber { get; set; }
+        public string NewsText { get; set; }
+        public string Image { get; set; }
     }
 }
