@@ -23,25 +23,37 @@ namespace DashboardLib.Services
 
         }
 
-        public List<TodoModel> JsonDeserializeTodo(string path, string fileName)
+        
+
+        public async Task<List<TodoModel>> JsonDeserializeTodoAsync(string path, string fileName)
 
         {
-            LoadListSync(path, fileName);
+
+            await LoadListSync(path, fileName);
+
+            List<TodoModel> list = new List<TodoModel>();
 
             if (text != null)
             {
                 Debug.WriteLine("loaded text!=null");
-                List<TodoModel> list = new List<TodoModel>();
+                
 
                 list = JsonConvert.DeserializeObject<List<TodoModel>>(text);
-
-                foreach (TodoModel task in list)
-                {
-                    Debug.WriteLine(task);
-                    todoList.Add(task);
-                }
+                Debug.WriteLine("List Contetn[0].Content: {0}", list[0].Content);
+                Debug.WriteLine("List Deserialize size: {0}", list.Count);
+                Debug.WriteLine("List element[0]: {0}",list[0]);
+                Debug.WriteLine("todoList.Count: {0}", todoList.Count);
+                Debug.WriteLine("Dont work ....");
+                //for (int i = 0; i < list.Count; i++)
+                //{
+                //    TodoModel task = list[i];
+                //    Debug.WriteLine("Add task to list");
+                //    todoList.Add(task);
+                //}
+                Debug.WriteLine("todoList.Count: {0}", todoList.Count);
             }
-            return todoList;
+            Debug.WriteLine("List: {0}", todoList);
+            return list;
         }
 
         public async Task SaveListAsync(string path, string fileName, string obj)

@@ -12,7 +12,7 @@ using DashboardLib.Services;
 
 namespace DashboardLib.ViewModels
 {
-    public class TodoWidgetViewModel : IViewModel, INotifyPropertyChanged
+    public class TodoWidgetViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
@@ -30,18 +30,21 @@ namespace DashboardLib.ViewModels
             private set { if (value != todoList) { todoList = value; NotifyPropertyChanged("TodoList"); } }
         }
 
-        public void Initialize()
+        
+
+        public async Task Initialize()
 
         {
-            if (JSS.JsonDeserializeTodo(path, fileName) != null)
+            if (todoList.Count == 0)
             {
-                foreach (TodoModel tm in JSS.JsonDeserializeTodo(path, fileName))
-                {
-                    todoList.Add(tm);
-                }
+                List<TodoModel> todoList = await JSS.JsonDeserializeTodoAsync(path, fileName);
+                Debug.WriteLine("Init");
+                Debug.WriteLine(todoList);
+                Debug.WriteLine("Init");
             }
-            
+
         }
+
 
         public void AddTodo(string content)
         {
