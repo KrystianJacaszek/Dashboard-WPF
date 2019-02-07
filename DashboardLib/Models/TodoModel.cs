@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace DashboardLib.Models
 {
@@ -6,7 +7,14 @@ namespace DashboardLib.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
-        
+
+        [JsonConstructor]
+        public TodoModel(string content, string id, TodoStatus status) {
+            this.content = content;
+            this.id = id;
+            this.status = status;
+        }
+
         public TodoModel(string content)
         {
             this.content = content;

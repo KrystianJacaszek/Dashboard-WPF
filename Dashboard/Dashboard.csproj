@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
-    <Content Include="CustomControls\TodoWidget\Delete.svg" />
+    <Content Include="CustomControls\TodoWidget\Assets\Delete.svg" />
     <Content Include="CustomControls\TodoWidget\Assets\Todo.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />

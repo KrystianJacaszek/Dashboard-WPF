@@ -1,7 +1,14 @@
 ﻿using DashboardLib.Models;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
+using Windows.Storage;
+using System.Collections.Generic;
+using DashboardLib.Services;
 
 namespace DashboardLib.ViewModels
 {
@@ -12,6 +19,11 @@ namespace DashboardLib.ViewModels
 
         private ObservableCollection<TodoModel> todoList = new ObservableCollection<TodoModel>();
 
+        private readonly string path = @"CustomControls\TodoWidget\Assets";
+        private readonly string fileName = "todolist.txt";
+
+        private JsonStorageServices JSS = new JsonStorageServices();
+
         public ObservableCollection<TodoModel> TodoList
         {
             get { return todoList; }
@@ -19,8 +31,16 @@ namespace DashboardLib.ViewModels
         }
 
         public void Initialize()
+
         {
-            // LoadListAsync();
+            if (JSS.JsonDeserializeTodo(path, fileName) != null)
+            {
+                foreach (TodoModel tm in JSS.JsonDeserializeTodo(path, fileName))
+                {
+                    todoList.Add(tm);
+                }
+            }
+            
         }
 
         public void AddTodo(string content)
@@ -28,7 +48,7 @@ namespace DashboardLib.ViewModels
             TodoModel newTodo = new TodoModel(content);
             TodoList.Add(newTodo);
 
-            // SaveListAsync();
+            JSS.JsonSerializeTodo(path, fileName, todoList);
         }
 
         public void DeleteTodo(string id)
@@ -36,7 +56,7 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             TodoList.Remove(targetTodo);
 
-            // SaveListAsync();
+            JSS.JsonSerializeTodo(path, fileName, todoList);
         }
 
         public void ToggleTodoStatus(string id)
@@ -44,67 +64,8 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             targetTodo.ToggleStatus();
 
-            // SaveListAsync();
+            JSS.JsonSerializeTodo(path, fileName, todoList);
         }
 
-        //public async System.Threading.Tasks.Task SaveListAsync()
-        //{
-
-
-        //    string json = JsonConvert.SerializeObject(todoList.ToArray(), Formatting.Indented);
-        //    Debug.WriteLine("SAVE");
-        //    Debug.WriteLine(json);
-        //    try
-        //    {
-
-        //        StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-        //        StorageFile sampleFile = await storageFolder.CreateFileAsync("todolist.txt", CreationCollisionOption.ReplaceExisting);
-        //        await FileIO.WriteTextAsync(sampleFile, json);
-        //        StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-        //        StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-        //        await sampleFile.MoveAsync(assetsFolder, "todolist.txt", NameCollisionOption.ReplaceExisting);
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Debug.WriteLine(e);
-
-        //    }
-
-
-        //}
-
-        //public async System.Threading.Tasks.Task LoadListAsync()
-        //{
-        //    try
-        //    {
-
-        //        StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-        //        StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-        //        StorageFile sampleFile = await assetsFolder.GetFileAsync("todolist.txt");
-
-        //        string text = await FileIO.ReadTextAsync(sampleFile);
-        //        Debug.WriteLine("laod");
-        //        Debug.WriteLine(text);
-
-        //        List<TodoModel> list = new List<TodoModel>();
-
-        //        list = JsonConvert.DeserializeObject<List<TodoModel>>(text);
-
-        //        foreach (TodoModel task in list)
-        //        {
-        //            todoList.Add(task);
-        //        }
-
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Debug.WriteLine(e);
-
-        //    }
-
-
-        //}
     }
 }
