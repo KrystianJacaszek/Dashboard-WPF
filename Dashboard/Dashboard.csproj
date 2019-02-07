@@ -128,6 +128,9 @@
     <Compile Include="CustomControls\ClockWidget\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\NewsWidget\NewsWidget.xaml.cs">
+      <DependentUpon>NewsWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
+    <Content Include="CustomControls\NewsWidget\Assets\newspaper.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
@@ -174,6 +178,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="CustomControls\ClockWidget\ClockWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\NewsWidget\NewsWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
