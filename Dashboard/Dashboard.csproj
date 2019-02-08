@@ -128,6 +128,9 @@
     <Compile Include="CustomControls\ClockWidget\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
+      <DependentUpon>QuotesWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +206,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CustomControls\QuotesWidget\Assets\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
