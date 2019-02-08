@@ -71,7 +71,7 @@ namespace DashboardLib.ViewModels
                     entry.Date = item.date;
                     entry.Category = item.category;
                     entry.Author = item.author;
-                    entry.Quote = item.quote;
+                    entry.Quote = $"\"{item.quote}\"";
 
                     return entry;
 

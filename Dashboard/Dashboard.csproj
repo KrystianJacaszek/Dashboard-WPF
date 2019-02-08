@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
+    <Content Include="CustomControls\QuotesWidget\Assets\quote-right.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
@@ -206,7 +207,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-   <Folder Include="CustomControls\QuotesWidget\Assets\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

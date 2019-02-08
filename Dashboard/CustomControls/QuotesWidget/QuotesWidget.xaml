@@ -20,57 +20,103 @@
                Source="{StaticResource QuoteRightIcon}"
                Height="45"
                Width="50"
-               Margin="20"
+               Margin="30,20,20,20"
                VerticalAlignment="Top"/>
 
-            <StackPanel Margin="20" Width="200">
+            <StackPanel Margin="20" HorizontalAlignment="Center" Width="200">
                 <TextBlock
                     Text="Interesing quotes"
                     Margin="10"
+                    Foreground="#FF3498DB"
                     HorizontalAlignment="Center"
                     FontWeight="Medium"
-                    FontSize="18"/>
+                    FontSize="20"
+                    FontFamily="Comic Sans MS"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Margin="20">
+            <Border 
+                BorderThickness="0,0,0,1"
+                Width="150"
+                HorizontalAlignment="Left"
+                BorderBrush="#FF3498DB">
+                <TextBlock
+                    Text="Category:"
+                    FontFamily="Comic Sans MS"
+                    Foreground="#FF3498DB"
+                    FontSize="14"
+                    FontWeight="Medium"/>
+            </Border>
             <TextBlock
-                Text="Category:"
-                FontWeight="Medium"/>
+                Text="{Binding Quotes.CurrentQuoteCategory}"
+                FontFamily="Calibri"/>
+
+            <Border 
+                BorderThickness="0,0,0,1"
+                Width="150"
+                HorizontalAlignment="Left"
+                BorderBrush="#FF3498DB">
+                <TextBlock
+                    x:Name="Title"
+                    Text="Title:"
+                    FontFamily="Comic Sans MS"
+                    FontSize="14"
+                    Foreground="#FF3498DB"
+                    FontWeight="Medium"/>
+            </Border>
+            
+            <TextBlock
+                Text="{Binding Quotes.CurrentTitle}"
+                FontFamily="Calibri"/>
+
+            <Border
+                BorderThickness="0,0,0,1"
+                Width="150"
+                HorizontalAlignment="Left"
+                BorderBrush="#FF3498DB">
+                <TextBlock
+                    x:Name="Date"
+                    Text="Date:"
+                    FontSize="14"
+                    FontFamily="Comic Sans MS"
+                    Foreground="#FF3498DB"
+                    FontWeight="Medium"/>
+            </Border>
 
             <TextBlock
-                Text="{Binding Quotes.CurrentQuoteCategory}"/>
+                Text="{Binding Quotes.CurrentDate}"
+                FontFamily="Calibri"/>
 
+            <Border 
+                BorderThickness="0,0,0,1"
+                Width="150"
+                HorizontalAlignment="Left"
+                BorderBrush="#FF3498DB">
+                <TextBlock
+                    x:Name="Author"
+                    Text="Author:"
+                    FontSize="14"
+                    FontFamily="Comic Sans MS"
+                    Foreground="#FF3498DB"
+                    FontWeight="Medium"/>
+            </Border>
             <TextBlock
-                x:Name="Title"
-                Text="Title:"
-                FontWeight="Medium"/>
+                Text="{Binding Quotes.CurrentQuoteAuthor}"
+                FontFamily="Calibri"/>
 
-            <TextBlock
-                Text="{Binding Quotes.CurrentTitle}"/>
-
-            <TextBlock
-                x:Name="Date"
-                Text="Date:"
-                FontWeight="Medium"/>
-
-            <TextBlock
-                Text="{Binding Quotes.CurrentDate}"/>
-
-            <TextBlock
-                x:Name="Author"
-                Text="Author:"
-                FontWeight="Medium"/>
-
-            <TextBlock
-                Text="{Binding Quotes.CurrentQuoteAuthor}"/>
-
-            <TextBlock
-                x:Name="Quote"
-                Text="{Binding Quotes.CurrentQuoteDescription}"
-                Margin="0,10,0,0"
-                TextWrapping="Wrap"
-                FontStyle="Italic"/>
+            <Border
+                Background="#fff1f1f1"
+                CornerRadius="6"
+                Margin="0,10,0,0">
+                <TextBlock
+                    x:Name="Quote"
+                    Text="{Binding Quotes.CurrentQuoteDescription}"
+                    TextWrapping="Wrap"
+                    Padding="10"
+                    FontFamily="Segoe Script"
+                    FontStyle="Italic"/>
+            </Border>
         </StackPanel>
     </StackPanel>
 </UserControl>

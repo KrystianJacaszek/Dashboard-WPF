@@ -1,4 +1,4 @@
-sing System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace DashboardLib.Models
