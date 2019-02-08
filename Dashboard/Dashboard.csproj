@@ -131,6 +131,7 @@
     <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\QuoteWidget\QuotesWidget.xaml.cs" />
     <Compile Include="CustomControls\Widget.xaml.cs">
       <DependentUpon>Widget.xaml</DependentUpon>
     </Compile>
@@ -159,6 +160,8 @@
     <Content Include="CustomControls\WeatherWidget\Assets\Question.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Snowflake.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Tint.svg" />
+    <Content Include="CustomControls\ClockWidget\Clock.svg" />
+    <Content Include="CustomControls\QuoteWidget\quote-right.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -180,10 +183,13 @@
     <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    <Page Include="CustomControls\QuoteWidget\QuotesWidget.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControls\Widget.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+     <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
