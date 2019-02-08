@@ -106,7 +106,8 @@
                 x:Name="TaskTextBox"
                 Grid.Column="0"
                 Grid.Row="0"
-                MaxLength="50" />
+                TextWrapping="Wrap"
+                MaxLength="70" />
 
             <Button
                 x:Name="taskAdd"

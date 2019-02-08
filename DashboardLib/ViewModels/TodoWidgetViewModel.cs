@@ -12,7 +12,7 @@ using DashboardLib.Services;
 
 namespace DashboardLib.ViewModels
 {
-    public class TodoWidgetViewModel : INotifyPropertyChanged
+    public class TodoWidgetViewModel : IViewModel, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
@@ -30,17 +30,17 @@ namespace DashboardLib.ViewModels
             private set { if (value != todoList) { todoList = value; NotifyPropertyChanged("TodoList"); } }
         }
 
-        
+        public void Initialize() {
+            Init();
+        }
 
-        public async Task Initialize()
+        public async Task Init()
 
         {
             if (todoList.Count == 0)
             {
-                List<TodoModel> todoList = await JSS.JsonDeserializeTodoAsync(path, fileName);
-                Debug.WriteLine("Init");
-                Debug.WriteLine(todoList);
-                Debug.WriteLine("Init");
+                TodoList = await JSS.JsonDeserializeTodoAsync(path, fileName);
+
             }
 
         }
@@ -51,7 +51,7 @@ namespace DashboardLib.ViewModels
             TodoModel newTodo = new TodoModel(content);
             TodoList.Add(newTodo);
 
-            JSS.JsonSerializeTodo(path, fileName, todoList);
+            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
         }
 
         public void DeleteTodo(string id)
@@ -59,7 +59,7 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             TodoList.Remove(targetTodo);
 
-            JSS.JsonSerializeTodo(path, fileName, todoList);
+            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
         }
 
         public void ToggleTodoStatus(string id)
@@ -67,7 +67,7 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             targetTodo.ToggleStatus();
 
-            JSS.JsonSerializeTodo(path, fileName, todoList);
+            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
         }
 
     }
