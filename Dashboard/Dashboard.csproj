@@ -206,7 +206,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomControls\QuotesWidget\Assets\" />
+   <Folder Include="CustomControls\QuotesWidget\Assets\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

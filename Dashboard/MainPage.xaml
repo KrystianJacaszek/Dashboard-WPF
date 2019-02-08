@@ -46,7 +46,7 @@
             </customControls:Widget>
 
             <customControls:Widget>
-                <customControls:QuotesWidget />
+              <customControls:QuotesWidget />
             </customControls:Widget>
         </StackPanel>
     </Grid>
