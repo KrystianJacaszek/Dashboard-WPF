@@ -1,5 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 using DashboardLib.ViewModels;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -10,24 +12,28 @@ namespace Dashboard.CustomControls
         public NotesWidget()
 
         { 
-            NotesWidgetViewModel notesWidgetViewModel = new NotesWidgetViewModel();
-            DataContext = notesWidgetViewModel;
-            this.InitializeComponent();
+            VM = new NotesWidgetViewModel();
+            VM.Initialize();
+
+            DataContext = VM;
+
+            InitializeComponent();
         }
 
-        private readonly NotesWidgetViewModel notesWidgetViewModel;
+        private readonly NotesWidgetViewModel VM;
 
         private void NotesTextBox_TextChanged(object sender, TextChangedEventArgs e) {
 
             string inputValue = NotesTextBox.Text;
-            notesWidgetViewModel.TextLeft(inputValue);
+            VM.TextChanged(inputValue);
+            VM.TextLeft(inputValue);
 
         }
 
         private void BtnClear_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             NotesTextBox.Text = string.Empty;
-            notesWidgetViewModel.TextClear();
+            VM.TextClear();
            
         }
     }
