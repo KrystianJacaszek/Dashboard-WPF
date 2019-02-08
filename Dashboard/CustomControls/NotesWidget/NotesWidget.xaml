@@ -57,7 +57,7 @@
             <StackPanel Grid.Column="0"
                         Grid.Row="0"
                         Orientation="Horizontal">
-                <TextBlock x:Name="NotesTextLeft" VerticalAlignment="Center"
+                <TextBlock x:Name="NotesTextLeft" Text="{Binding CharLeft}" VerticalAlignment="Center"
                            Margin="5">
                 500
                 </TextBlock>
@@ -74,7 +74,7 @@
                        Height="40"
                        Content="Clear"
                        Margin="5"
-                       Click="BtnClear"
+                       Click="BtnClear_Click"
                 />
         </Grid>
         <TextBox x:Name="NotesTextBox" Grid.Column="0"
@@ -85,6 +85,7 @@
                  HorizontalAlignment="Stretch"
                  TextChanged="NotesTextBox_TextChanged"
                  TextWrapping="Wrap"
+                 Text="{Binding NotesContent}"
                  Margin="5"
                  />
 
