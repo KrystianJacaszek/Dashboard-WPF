@@ -1,13 +1,8 @@
 ﻿using DashboardLib.Models;
-using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
-using System.Diagnostics;
-using Windows.Storage;
-using System.Collections.Generic;
 using DashboardLib.Services;
 
 namespace DashboardLib.ViewModels

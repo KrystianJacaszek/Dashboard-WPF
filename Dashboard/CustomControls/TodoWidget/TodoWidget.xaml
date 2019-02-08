@@ -18,7 +18,7 @@
         
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel >
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
             <Image
                 Source="{StaticResource TodoIcon}"
@@ -32,66 +32,72 @@
                 <TextBlock Text="Keep it all in sight" Foreground="Black" FontSize="14" FontFamily="Lato" />
             </StackPanel>
         </StackPanel>
+        <StackPanel MaxHeight="650">
+            <ScrollViewer x:Name="ScrollViewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxHeight="630">
+                <ItemsControl ItemsSource="{Binding TodoList}" Grid.Column="0" Grid.Row="2" Margin="12 16 12 16">
+                
+                            <ItemsControl.ItemTemplate>
+                   
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-        <ItemsControl ItemsSource="{Binding TodoList}" Grid.Column="0" Grid.Row="2" Margin="12 16 12 16">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                                        <CheckBox
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Width="24"
+                                    Height="24"
+                                    BorderBrush="Gray"
+                                    IsChecked="{Binding Status, Converter={StaticResource TodoStatusConverter}}"
+                                    Tag="{Binding Id}"
+                                    Click="TodoCheckBox_Click" />
 
-                        <CheckBox
-                            Grid.Column="0"
-                            Grid.Row="0"
-                            Width="24"
-                            Height="24"
-                            BorderBrush="Gray"
-                            IsChecked="{Binding Status, Converter={StaticResource TodoStatusConverter}}"
-                            Tag="{Binding Id}"
-                            Click="TodoCheckBox_Click" />
-                        
-                        <TextBlock
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            Text="{Binding Content}"
-                            Foreground="Black"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Margin="2"
-                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Text="{Binding Content}"
+                                    Foreground="Black"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Margin="2"
+                                    TextWrapping="Wrap" />
 
-                        <Button
-                            Grid.Column="2"
-                            Grid.Row="0"
-                            Tag="{Binding Id}"
-                            Margin="2"
-                            Background="#3498db"
-                            Padding="0"
-                            Width="24"
-                            Height="24"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Center"
-                            Click="TodoDeleteButton_Click">
-                            <Image
-                                Width="20"
-                                Height="20"
-                                Margin="2 0 4 4"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Source="{StaticResource DeleteIcon}"/>
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
+                                        <Button
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Tag="{Binding Id}"
+                                    Margin="2"
+                                    Background="#3498db"
+                                    Padding="0"
+                                    Width="24"
+                                    Height="24"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                    Click="TodoDeleteButton_Click">
+                                            <Image
+                                        Width="20"
+                                        Height="20"
+                                        Margin="2 0 4 4"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Source="{StaticResource DeleteIcon}"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                    
+                        </ItemsControl.ItemTemplate>
+               
+                </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
         <Grid Margin="12 0 12 16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -106,6 +112,7 @@
                 x:Name="TaskTextBox"
                 Grid.Column="0"
                 Grid.Row="0"
+                Margin="0 10 0 0"
                 TextWrapping="Wrap"
                 MaxLength="70" />
 
@@ -117,7 +124,7 @@
                 Foreground="Black"
                 Content="Add"
                 Width="50"
-                Margin="5 0 0 0"
+                Margin="5 10 0 0"
                 Background="#3498db" />
         </Grid>
     </StackPanel>
