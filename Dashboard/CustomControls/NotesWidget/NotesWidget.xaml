@@ -8,6 +8,11 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <UserControl.Resources>
+        
+        <SvgImageSource x:Key="NotesIcon" UriSource="Assets/Notes.svg"/>
+
+    </UserControl.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,7 +30,7 @@
                     Orientation="Horizontal"
                     >
 
-        <Image  Source="Notes.svg"
+        <Image  Source="{StaticResource NotesIcon}"
                 
                 Width="40"
                 Height="40"
@@ -80,12 +85,13 @@
         <TextBox x:Name="NotesTextBox" Grid.Column="0"
                  Grid.Row="2"
                  MinHeight="200"
-                 MaxLength="500"
+                 MaxLength="1000"
+                 MaxHeight="650"
                  VerticalAlignment="Stretch"
                  HorizontalAlignment="Stretch"
                  TextChanged="NotesTextBox_TextChanged"
-                 TextWrapping="Wrap"
                  Text="{Binding NotesContent}"
+                 TextWrapping="Wrap"
                  Margin="5"
                  />
 

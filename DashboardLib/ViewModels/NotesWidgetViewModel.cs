@@ -1,7 +1,10 @@
 ﻿using DashboardLib.Services;
+using DashboardLib.Models;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
+
 
 namespace DashboardLib.ViewModels
 {
@@ -10,17 +13,25 @@ namespace DashboardLib.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
-        private string NotesContent;
+        private string charLeft;
 
-        private string CharLeft;
-
-        public string charLeft {
-            get { return CharLeft; }
-            private set { if (value != charLeft) { charLeft = value; NotifyPropertyChanged("CharLeft"); } }
-        }
+        private NotesModel notesModel = new NotesModel();
 
         private readonly string path = @"CustomControls\NotesWidget\Assets";
         private readonly string fileName = "notes.txt";
+
+        public string CharLeft {
+            get { return charLeft; }
+            private set { if (value != charLeft) { charLeft = value; NotifyPropertyChanged("CharLeft"); } }
+        }
+
+        private string notesContent;
+
+        public string NotesContent
+        {
+            get { return notesContent; }
+            private set { if (value != notesContent) { notesContent = value; NotifyPropertyChanged("NotesContent"); } }
+        }
 
         private JsonStorageServices JSS = new JsonStorageServices();
 
@@ -33,29 +44,35 @@ namespace DashboardLib.ViewModels
         public async Task Init()
 
         {
-            if (NotesContent is null)
+            TextLeft("");
+
+            if (notesModel.NotesContent.Length==0)
             {
-                NotesContent = await JSS.JsonDeserializeNotesAsync(path, fileName);
+                notesModel = await JSS.JsonDeserializeNotesAsync(path, fileName);
+                NotesContent = notesModel.NotesContent;
 
             }
+
+
 
         }
 
         public void TextChanged(string content) {
 
-            NotesContent = content;
-            JSS.JsonSerializeNotesAsync(path, fileName, NotesContent);
+            notesModel.NotesContent = content;
+            JSS.JsonSerializeNotesAsync(path, fileName, notesModel);
 
         }
 
         public void TextLeft(string content) {
 
-            CharLeft = (500 - content.Length).ToString();
+            CharLeft = (1000 - content.Length).ToString();
         }
 
         public void TextClear() {
-            NotesContent = String.Empty;
-            JSS.JsonSerializeNotesAsync(path, fileName, NotesContent);
+
+            notesModel.NotesContent = string.Empty;
+            JSS.JsonSerializeNotesAsync(path, fileName, notesModel);
 
         }
 

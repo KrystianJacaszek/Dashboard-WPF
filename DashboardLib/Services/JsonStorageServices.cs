@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using DashboardLib.Models;
 using Windows.Storage;
+using Newtonsoft.Json;
 
 
 namespace DashboardLib.Services
@@ -20,20 +22,20 @@ namespace DashboardLib.Services
 
 
 
-        public async Task<string> JsonDeserializeNotesAsync(string path, string fileName)
+        public async Task<NotesModel> JsonDeserializeNotesAsync(string path, string fileName)
 
         {
 
             await LoadListSync(path, fileName);
 
-            string notesContent;
+            NotesModel notesModel= new NotesModel();
 
             if (text != null)
             {
-                notesContent = JsonConvert.Deserialize(text);
+                notesModel = JsonConvert.DeserializeObject<NotesModel>(text);
             }
 
-            return notesContent;
+            return notesModel;
         }
 
         public async Task SaveListAsync(string path, string fileName, string obj)
