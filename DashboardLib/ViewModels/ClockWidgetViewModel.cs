@@ -1,16 +1,24 @@
 ﻿using DashboardLib.Models;
+using DashboardLib.Services;
 using System;
-using System.ComponentModel;
-using Windows.UI.Xaml;
+using System.Threading.Tasks;
 
 namespace DashboardLib.ViewModels
 {
-    public class ClockWidgetViewModel : IViewModel, INotifyPropertyChanged
+    public class ClockWidgetViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        public ClockWidgetViewModel()
+        {
+            timerService = TimerService.Instance;
+        }
+
+        public ClockWidgetViewModel(ITimerService timerService)
+        {
+            this.timerService = timerService;
+        }
 
         private ClockModel clock = new ClockModel();
+        private ITimerService timerService;
 
         public ClockModel Clock
         {
@@ -18,13 +26,20 @@ namespace DashboardLib.ViewModels
             private set { if (value != clock) { clock = value; NotifyPropertyChanged("Clock"); } }
         }
 
-        public void Initialize()
+        public override Task Initialize()
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
+            timerService.Interval = TimeSpan.FromSeconds(1);
+            timerService.Tick += Timer_Tick;
+            timerService.Start();
 
-            timer.Start();
+            return Task.CompletedTask;
+        }
+
+        public override Task Destroy()
+        {
+            timerService.Stop();
+
+            return Task.CompletedTask;
         }
 
         private void Timer_Tick(object sender, object e)
