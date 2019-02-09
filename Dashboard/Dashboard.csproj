@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
       <DependentUpon>QuotesWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\NotesWidget\NotesWidget.xaml.cs">
       <DependentUpon>NotesWidget.xaml</DependentUpon>
     </Compile>
@@ -186,8 +187,10 @@
     </Page>
     <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\NotesWidget\NotesWidget.xaml">
-    <SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
