@@ -50,6 +50,7 @@
                     MaxHeight="180"
                     HorizontalAlignment="Center"/>
             </StackPanel>
+            
             <StackPanel>
                 <TextBlock 
                     FontSize="16"

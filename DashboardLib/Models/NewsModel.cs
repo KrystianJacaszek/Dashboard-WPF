@@ -1,4 +1,4 @@
-﻿using DashboardLib.ApiModules;
+using DashboardLib.ApiModules;
 using System;
 using System.ComponentModel;
 
