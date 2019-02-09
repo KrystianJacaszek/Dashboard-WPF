@@ -9,9 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        
         <SvgImageSource x:Key="NotesIcon" UriSource="Assets/Notes.svg"/>
-
     </UserControl.Resources>
 
     <Grid>
@@ -62,10 +60,8 @@
             <StackPanel Grid.Column="0"
                         Grid.Row="0"
                         Orientation="Horizontal">
-                <TextBlock x:Name="NotesTextLeft" Text="{Binding CharLeft}" VerticalAlignment="Center"
-                           Margin="5">
-                500
-                </TextBlock>
+                <TextBlock x:Name="NotesTextLeft" Text="{Binding Notes.CharsLeftToLimit}" VerticalAlignment="Center"
+                           Margin="5" />
                 <TextBlock  VerticalAlignment="Center" >
                 characters left
                 </TextBlock>
@@ -89,8 +85,7 @@
                  MaxHeight="650"
                  VerticalAlignment="Stretch"
                  HorizontalAlignment="Stretch"
-                 TextChanged="NotesTextBox_TextChanged"
-                 Text="{Binding NotesContent}"
+                 Text="{Binding Notes.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  TextWrapping="Wrap"
                  Margin="5"
                  />

@@ -1,80 +1,56 @@
 ﻿using DashboardLib.Services;
 using DashboardLib.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading.Tasks;
-
 
 namespace DashboardLib.ViewModels
 {
-    public class NotesWidgetViewModel: INotifyPropertyChanged
+    public class NotesWidgetViewModel: BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
-
-        private string charLeft;
-
-        private NotesModel notesModel = new NotesModel();
-
-        private readonly string path = @"CustomControls\NotesWidget\Assets";
-        private readonly string fileName = "notes.txt";
-
-        public string CharLeft {
-            get { return charLeft; }
-            private set { if (value != charLeft) { charLeft = value; NotifyPropertyChanged("CharLeft"); } }
-        }
-
-        private string notesContent;
-
-        public string NotesContent
+        public NotesWidgetViewModel()
         {
-            get { return notesContent; }
-            private set { if (value != notesContent) { notesContent = value; NotifyPropertyChanged("NotesContent"); } }
+            storageController = JsonStorageService.Instance.CreateControllerForFile<NotesModel>(@"CustomControls\NotesWidget\Assets", "notes.txt");
         }
 
-        private JsonStorageServices JSS = new JsonStorageServices();
-
-
-        public void Initialize()
+        public NotesWidgetViewModel(IJsonStorageService storageService)
         {
-            Init();
+            storageController = storageService.CreateControllerForFile<NotesModel>(@"CustomControls\TodoWidget\Assets", "notes.txt");
         }
 
-        public async Task Init()
+        private IJsonStorageController<NotesModel> storageController;
+        private NotesModel notes = new NotesModel();
 
+        public NotesModel Notes
         {
-            TextLeft("");
-
-            if (notesModel.NotesContent.Length==0)
-            {
-                notesModel = await JSS.JsonDeserializeNotesAsync(path, fileName);
-                NotesContent = notesModel.NotesContent;
-
-            }
-
-
-
+            get { return notes; }
+            private set { if (value != notes) { notes = value; NotifyPropertyChanged("Notes"); } }
         }
 
-        public void TextChanged(string content) {
+        public override async Task Initialize()
+        {
+            List<NotesModel> savedNotesList = await storageController.LoadList();
+            if (savedNotesList.Count > 0)
+                Notes = savedNotesList[0];
 
-            notesModel.NotesContent = content;
-            JSS.JsonSerializeNotesAsync(path, fileName, notesModel);
-
+            notes.PropertyChanged += onNotesPropertyChanged;
         }
 
-        public void TextLeft(string content) {
-
-            CharLeft = (1000 - content.Length).ToString();
+        public override Task Destroy()
+        {
+            return Task.CompletedTask;
         }
 
-        public void TextClear() {
-
-            notesModel.NotesContent = string.Empty;
-            JSS.JsonSerializeNotesAsync(path, fileName, notesModel);
-
+        public void ClearNotes() {
+            notes.Content = string.Empty;
         }
 
+        private void onNotesPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Content")
+                storageController.SaveList(new List<NotesModel>() { notes });
+        }
     }
 }
