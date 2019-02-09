@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace DashboardLib.ApiModules
 {
-    class WeatherApi
+    public interface IWeatherApi
+    {
+        Task<WeatherForecast> LoadWeather(double latitude, double longitude);
+    }
+
+    public class WeatherApi : IWeatherApi
     {
         private WeatherApi()
         {
@@ -88,13 +93,13 @@ namespace DashboardLib.ApiModules
         }
     }
 
-    class Coord
+    public class Coord
     {
         public float lat { get; set; }
         public float lon { get; set; }
     }
 
-    class City
+    public class City
     {
         public Coord coord { get; set; }
         public string country { get; set; }
@@ -102,7 +107,7 @@ namespace DashboardLib.ApiModules
         public string name { get; set; }
     }
 
-    class ForecastEntryMain
+    public class ForecastEntryMain
     {
         public float grnd_level { get; set; }
         public float humidity { get; set; }
@@ -114,7 +119,7 @@ namespace DashboardLib.ApiModules
         public float temp_min { get; set; }
     }
 
-    class ForecastEntryDetails
+    public class ForecastEntryDetails
     {
         public string description { get; set; }
         public string icon { get; set; }
@@ -122,18 +127,18 @@ namespace DashboardLib.ApiModules
         public string main { get; set; }
     }
 
-    class WeatherEntryClouds
+    public class WeatherEntryClouds
     {
         public float all { get; set; }
     }
 
-    class WeatherEntryWind
+    public class WeatherEntryWind
     {
         public float deg { get; set; }
         public float speed { get; set; }
     }
 
-    class ForecastEntry
+    public class ForecastEntry
     {
         public WeatherEntryClouds clouds { get; set; }
         public int dt { get; set; }
@@ -143,7 +148,7 @@ namespace DashboardLib.ApiModules
         public WeatherEntryWind wind { get; set; }
     }
 
-    class WeatherForecast
+    public class WeatherForecast
     {
         public City city { get; set; }
         public int cnt { get; set; }

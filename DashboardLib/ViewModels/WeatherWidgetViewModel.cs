@@ -1,7 +1,7 @@
 ﻿using DashboardLib.ApiModules;
 using DashboardLib.Models;
+using DashboardLib.Services;
 using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,16 +10,26 @@ using Windows.Services.Maps;
 
 namespace DashboardLib.ViewModels
 {
-    public class WeatherWidgetViewModel : IViewModel, INotifyPropertyChanged
+    public class WeatherWidgetViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        public WeatherWidgetViewModel()
+        {
+            geolocationService = GeolocationService.Instance;
+            weatherApi = WeatherApi.Instance;
+        }
+
+        public WeatherWidgetViewModel(IGeolocationService geolocationService, IWeatherApi weatherApi)
+        {
+            this.geolocationService = geolocationService;
+            this.weatherApi = weatherApi;
+        }
 
         private bool fetchingData = false;
+        private IGeolocationService geolocationService;
         private string locationCityName = "";
         private bool locationErrorThrown = false;
         private WeatherModel weather;
-        private WeatherApi weatherApi = WeatherApi.Instance;
+        private IWeatherApi weatherApi;
 
         public bool FetchingData
         {
@@ -45,28 +55,27 @@ namespace DashboardLib.ViewModels
             private set { if (value != weather) { weather = value; NotifyPropertyChanged("Weather"); } }
         }
 
-        public async void Initialize()
+        public override async Task Initialize()
         {
             FetchingData = true;
 
-            Geoposition position = null;
+            BasicGeoposition position = new BasicGeoposition();
 
             try
             {
-                await Geolocator.RequestAccessAsync();
-                Geolocator geolocator = new Geolocator();
-                position = await geolocator.GetGeopositionAsync();
+                await geolocationService.RequestGeolocationPermission();
+                position = await geolocationService.GetCurrentCoordinates();
             } catch (Exception e)
             {
                 LocationErrorThrown = true;
                 FetchingData = false;
             }
 
-            if (LocationErrorThrown || position == null)
+            if (LocationErrorThrown)
                 return;
 
-            LocationCityName = await getLocationCityName(position.Coordinate.Point.Position.Latitude, position.Coordinate.Point.Position.Longitude);
-            WeatherForecast weatherData = await weatherApi.LoadWeather(position.Coordinate.Point.Position.Latitude, position.Coordinate.Point.Position.Longitude);
+            LocationCityName = await getLocationCityName(position.Latitude, position.Longitude);
+            WeatherForecast weatherData = await weatherApi.LoadWeather(position.Latitude, position.Longitude);
 
             if (weatherData != null)
             {
@@ -87,6 +96,11 @@ namespace DashboardLib.ViewModels
             }
         }
 
+        public override Task Destroy()
+        {
+            return Task.CompletedTask;
+        }
+
         private string capitalizeFirstLetter(string word)
         {
             return char.ToUpper(word[0]) + word.Substring(1);
@@ -99,18 +113,18 @@ namespace DashboardLib.ViewModels
 
         private async Task<string> getLocationCityName(double latitude, double longitude)
         {
-            BasicGeoposition location = new BasicGeoposition();
-            location.Latitude = latitude;
-            location.Longitude = longitude;
+            // BasicGeoposition location = new BasicGeoposition();
+            // location.Latitude = latitude;
+            // location.Longitude = longitude;
 
-            Geopoint pointToReverseGeocode = new Geopoint(location);
+            // Geopoint pointToReverseGeocode = new Geopoint(location);
 
-            MapService.ServiceToken = "AgnaSQNEN_Bt6FdHg63M-H8nj55Ne3ZywzJqn0Z--WGb6czU6qxrEe6Av7nORmcU";
-            MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
-            Debug.WriteLine("result: " + result.Status.ToString());
+            // MapService.ServiceToken = "AgnaSQNEN_Bt6FdHg63M-H8nj55Ne3ZywzJqn0Z--WGb6czU6qxrEe6Av7nORmcU";
+            // MapLocationFinderResult result = await MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
+            // Debug.WriteLine("result: " + result.Status.ToString());
 
-            if (result.Status == MapLocationFinderStatus.Success)
-                 return result.Locations[0].Address.Town;
+            // if (result.Status == MapLocationFinderStatus.Success)
+            //     return result.Locations[0].Address.Town;
 
             return "Unknown City";
         }
