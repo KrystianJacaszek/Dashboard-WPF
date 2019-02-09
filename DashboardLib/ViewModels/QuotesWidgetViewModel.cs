@@ -2,14 +2,12 @@
 using DashboardLib.Models;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DashboardLib.ViewModels
 {
-    public class QuotesWidgetViewModel : IViewModel, INotifyPropertyChanged
+    public class QuotesWidgetViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
-
         private string title;
         private string date;
         private string category;
@@ -57,7 +55,7 @@ namespace DashboardLib.ViewModels
         }
 
 
-        public async void Initialize()
+        public override async Task Initialize()
         {
             QuotesApi.Rootobject quotesData = await quotesApi.LoadQuotes("a");
 
@@ -80,6 +78,11 @@ namespace DashboardLib.ViewModels
                 Quotes = new QuotesModel(quotesList);
             }
 
+        }
+
+        public override Task Destroy()
+        {
+            return Task.CompletedTask;
         }
     }
 
