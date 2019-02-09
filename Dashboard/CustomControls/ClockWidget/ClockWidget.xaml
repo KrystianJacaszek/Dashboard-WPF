@@ -18,8 +18,8 @@
             Margin="0 0 12 0" />
 
         <StackPanel VerticalAlignment="Center">
-            <TextBlock Text="{Binding ClockModel.CurrentTime}" Foreground="Black" FontSize="18" FontFamily="Lato" Margin="0 0 0 6" />
-            <TextBlock Text="{Binding ClockModel.CurrentDate}" Foreground="Black" FontSize="14" FontFamily="Lato" />
+            <TextBlock Text="{Binding Clock.CurrentTime}" Foreground="Black" FontSize="18" FontFamily="Lato" Margin="0 0 0 6" />
+            <TextBlock Text="{Binding Clock.CurrentDate}" Foreground="Black" FontSize="14" FontFamily="Lato" />
         </StackPanel>
     </StackPanel>
 </UserControl>
