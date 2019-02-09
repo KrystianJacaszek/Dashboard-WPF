@@ -1,23 +1,26 @@
 ﻿using DashboardLib.Models;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using DashboardLib.Services;
+using System.Collections.Generic;
 
 namespace DashboardLib.ViewModels
 {
-    public class TodoWidgetViewModel : IViewModel, INotifyPropertyChanged
+    public class TodoWidgetViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+        public TodoWidgetViewModel()
+        {
+            storageController = JsonStorageService.Instance.CreateControllerForFile<TodoModel>(@"CustomControls\TodoWidget\Assets", "todolist.txt");
+        }
 
+        public TodoWidgetViewModel(IJsonStorageService storageService)
+        {
+            storageController = storageService.CreateControllerForFile<TodoModel>(@"CustomControls\TodoWidget\Assets", "todolist.txt");
+        }
+
+        private IJsonStorageController<TodoModel> storageController;
         private ObservableCollection<TodoModel> todoList = new ObservableCollection<TodoModel>();
-
-        private readonly string path = @"CustomControls\TodoWidget\Assets";
-        private readonly string fileName = "todolist.txt";
-
-        private JsonStorageServices JSS = new JsonStorageServices();
 
         public ObservableCollection<TodoModel> TodoList
         {
@@ -25,28 +28,23 @@ namespace DashboardLib.ViewModels
             private set { if (value != todoList) { todoList = value; NotifyPropertyChanged("TodoList"); } }
         }
 
-        public void Initialize() {
-            Init();
+        public override async Task Initialize() {
+            List<TodoModel> savedTodoList = await storageController.LoadList();
+
+            TodoList = new ObservableCollection<TodoModel>(savedTodoList);
         }
 
-        public async Task Init()
-
+        public override Task Destroy()
         {
-            if (todoList.Count == 0)
-            {
-                TodoList = await JSS.JsonDeserializeTodoAsync(path, fileName);
-
-            }
-
+            return Task.CompletedTask;
         }
-
 
         public void AddTodo(string content)
         {
             TodoModel newTodo = new TodoModel(content);
             TodoList.Add(newTodo);
 
-            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
+            saveCurrentTodoList();
         }
 
         public void DeleteTodo(string id)
@@ -54,7 +52,7 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             TodoList.Remove(targetTodo);
 
-            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
+            saveCurrentTodoList();
         }
 
         public void ToggleTodoStatus(string id)
@@ -62,8 +60,12 @@ namespace DashboardLib.ViewModels
             TodoModel targetTodo = TodoList.First(item => item.Id == id);
             targetTodo.ToggleStatus();
 
-            JSS.JsonSerializeTodoAsync(path, fileName, todoList);
+            saveCurrentTodoList();
         }
 
+        private async Task saveCurrentTodoList()
+        {
+            await storageController.SaveList(todoList.ToList());
+        }
     }
 }
