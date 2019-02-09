@@ -128,6 +128,9 @@
     <Compile Include="CustomControls\ClockWidget\ClockWidget.xaml.cs">
       <DependentUpon>ClockWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\NotesWidget\NotesWidget.xaml.cs">
+      <DependentUpon>NotesWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,7 @@
     <None Include="Dashboard_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomControls\NotesWidget\Assets\Notes.svg" />
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
@@ -177,6 +181,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControls\NotesWidget\NotesWidget.xaml">
+    <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +204,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
