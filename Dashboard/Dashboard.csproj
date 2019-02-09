@@ -131,6 +131,9 @@
     <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
       <DependentUpon>QuotesWidget.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\TodoWidget\TodoWidget.xaml.cs">
+      <DependentUpon>TodoWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\NotesWidget\NotesWidget.xaml.cs">
       <DependentUpon>NotesWidget.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,8 @@
     <Content Include="CustomControls\NotesWidget\Assets\Notes.svg" />
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
     <Content Include="CustomControls\QuotesWidget\Assets\quote-right.svg" />
+    <Content Include="CustomControls\TodoWidget\Assets\Delete.svg" />
+    <Content Include="CustomControls\TodoWidget\Assets\Todo.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
@@ -185,7 +190,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+
     <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\TodoWidget\TodoWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
