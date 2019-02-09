@@ -13,8 +13,8 @@ namespace Dashboard
     {
         public MainPage()
         {
-            this.InitializeComponent();
-            this.SetupLayout();
+            InitializeComponent();
+            SetupLayout();
         }
 
         private void SetupLayout()
