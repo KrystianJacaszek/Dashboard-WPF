@@ -11,35 +11,36 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        <SvgImageSource x:Key="NewsIcon" UriSource="Assets/newspaper.svg"/>
+        <SvgImageSource x:Key="NewspaperIcon" UriSource="Assets/Newspaper.svg"/>
+        
         <vm:NewsWidgetViewModel x:Key="newsViewModel"/>
     </UserControl.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Image 
-               Source="{StaticResource NewsIcon}"
-               Height="45"
-               Width="50"
-               Margin="10"
-               VerticalAlignment="Top" FocusVisualPrimaryBrush="#FF048BF5"/>
-            <StackPanel Margin="10,0,10,0">
-                <TextBlock 
-                    Text="What has happened today?"
-                    Margin="10,10,10,0"
-                    FontWeight="Medium"
-                    FontSize="18"
-                    FontFamily="Comic Sans MS"/>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 18">
+            <Image
+                        Source="{StaticResource NewspaperIcon}"
+                        Height="40"
+                        Width="40"
+                        VerticalAlignment="Center"
+                        Margin="0 0 12 0" />
 
-                <TextBlock 
-                    Text="Read below..."
-                    FontSize="16"
-                    HorizontalAlignment="Center"
-                    FontWeight="Medium"
-                    FontFamily="Comic Sans MS"/>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock
+                            Text="What has happened today?"
+                            Foreground="Black"
+                            FontSize="18"
+                            FontFamily="Lato"
+                            Margin="0 0 0 6" />
 
+                <TextBlock
+                            Text="Read below?"
+                            Foreground="Black"
+                            FontSize="14"
+                            FontFamily="Lato" />
             </StackPanel>
         </StackPanel>
+        
         <StackPanel Margin="10,5,10,0">
             <StackPanel>
                 <Image 

@@ -38,15 +38,15 @@
             <customControls:Widget>
                 <customControls:TodoWidget/>
             </customControls:Widget>
+            
+            <customControls:Widget>
+                <customControls:QuotesWidget />
+            </customControls:Widget>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="0">
             <customControls:Widget>
                 <customControls:NewsWidget/>
-            </customControls:Widget>
-
-            <customControls:Widget>
-              <customControls:QuotesWidget />
             </customControls:Widget>
         </StackPanel>
     </Grid>
