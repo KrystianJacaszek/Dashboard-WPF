@@ -26,14 +26,14 @@
 
             <StackPanel VerticalAlignment="Center">
                 <TextBlock
-                            Text="What has happened today?"
+                            Text="Interesting quotes"
                             Foreground="Black"
                             FontSize="18"
                             FontFamily="Lato"
                             Margin="0 0 0 6" />
 
                 <TextBlock
-                            Text="Read below?"
+                            Text="Get inspired"
                             Foreground="Black"
                             FontSize="14"
                             FontFamily="Lato" />
