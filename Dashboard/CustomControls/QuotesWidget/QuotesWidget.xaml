@@ -10,28 +10,33 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        <SvgImageSource x:Key="QuoteRightIcon" UriSource="Assets/quote-right.svg"/>
+        <SvgImageSource x:Key="QuoteIcon" UriSource="Assets/Quote.svg"/>
+        
         <vm:QuotesWidgetViewModel x:Key="quotesVM"/>
     </UserControl.Resources>
 
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 18">
             <Image
-               Source="{StaticResource QuoteRightIcon}"
-               Height="45"
-               Width="50"
-               Margin="30,20,20,20"
-               VerticalAlignment="Top"/>
+                        Source="{StaticResource QuoteIcon}"
+                        Height="40"
+                        Width="40"
+                        VerticalAlignment="Center"
+                        Margin="0 0 12 0" />
 
-            <StackPanel Margin="20" HorizontalAlignment="Center" Width="200">
+            <StackPanel VerticalAlignment="Center">
                 <TextBlock
-                    Text="Interesing quotes"
-                    Margin="10"
-                    Foreground="#FF3498DB"
-                    HorizontalAlignment="Center"
-                    FontWeight="Medium"
-                    FontSize="20"
-                    FontFamily="Comic Sans MS"/>
+                            Text="What has happened today?"
+                            Foreground="Black"
+                            FontSize="18"
+                            FontFamily="Lato"
+                            Margin="0 0 0 6" />
+
+                <TextBlock
+                            Text="Read below?"
+                            Foreground="Black"
+                            FontSize="14"
+                            FontFamily="Lato" />
             </StackPanel>
         </StackPanel>
 
