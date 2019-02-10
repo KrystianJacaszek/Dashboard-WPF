@@ -120,17 +120,20 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ApiModules\QuotesApi.cs" />
+    <Compile Include="ApiModules\WeatherApi.cs" />
     <Compile Include="ApiModules\NewsApi.cs" />
     <Compile Include="Models\NewsModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ClockModel.cs" />
+    <Compile Include="Models\QuotesModel.cs" />
+    <Compile Include="ViewModels\QuotesWidgetViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TodoModel.cs" />
     <Compile Include="Models\WeatherModel.cs" />
     <Compile Include="Services\JsonStorageService.cs" />
     <Compile Include="ViewModels\NewsWidgetViewModel.cs" />
     <Compile Include="ViewModels\TodoWidgetViewModel.cs" />
     <Compile Include="Models\NotesModel.cs" />
-    <Compile Include="ApiModules\WeatherApi.cs" />
     <Compile Include="Services\GeolocationService.cs" />
     <Compile Include="Services\TimerService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
