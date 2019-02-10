@@ -130,6 +130,9 @@
     </Compile>
     <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
       <DependentUpon>QuotesWidget.xaml</DependentUpon>
+      </Compile>
+    <Compile Include="CustomControls\NewsWidget\NewsWidget.xaml.cs">
+      <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\TodoWidget\TodoWidget.xaml.cs">
       <DependentUpon>TodoWidget.xaml</DependentUpon>
@@ -155,6 +158,7 @@
     <None Include="Dashboard_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomControls\NewsWidget\Assets\newspaper.svg" />
     <Content Include="CustomControls\NotesWidget\Assets\Notes.svg" />
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
     <Content Include="CustomControls\QuotesWidget\Assets\quote-right.svg" />
@@ -190,8 +194,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-
     <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\NewsWidget\NewsWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
