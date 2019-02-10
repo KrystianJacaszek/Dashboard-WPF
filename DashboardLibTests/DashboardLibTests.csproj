@@ -4,26 +4,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{025FC36A-C7A6-433E-9506-FC14E262841C}</ProjectGuid>
+    <ProjectGuid>{B098EA9F-609C-42A7-8016-CA7DA07FE393}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dashboard</RootNamespace>
-    <AssemblyName>Dashboard</AssemblyName>
+    <RootNamespace>DashboardLibTests</RootNamespace>
+    <AssemblyName>DashboardLibTests</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17763.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>Dashboard_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm|arm64</AppxBundlePlatforms>
-    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
-    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <PackageCertificateKeyFile>DashboardLibTests_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <UnitTestPlatformVersion Condition="'$(UnitTestPlatformVersion)' == ''">$(VisualStudioVersion)</UnitTestPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -122,61 +116,32 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\ClockWidget\ClockWidget.xaml.cs">
-      <DependentUpon>ClockWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
-      <DependentUpon>QuotesWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\NewsWidget\NewsWidget.xaml.cs">
-      <DependentUpon>NewsWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\TodoWidget\TodoWidget.xaml.cs">
-      <DependentUpon>TodoWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\NotesWidget\NotesWidget.xaml.cs">
-      <DependentUpon>NotesWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\WeatherWidget\WeatherWidget.xaml.cs">
-      <DependentUpon>WeatherWidget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\Widget.xaml.cs">
-      <DependentUpon>Widget.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ViewModelsTests\NotesWidgetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModelsTests\TodoWidgetTests.cs" />
+    <Compile Include="UnitTestApp.xaml.cs">
+      <DependentUpon>UnitTestApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModelsTests\WeatherWidgetTests.cs" />
+    <Compile Include="ViewModelsTests\ClockWidgetTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="UnitTestApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Dashboard_TemporaryKey.pfx" />
+    <None Include="DashboardLibTests_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomControls\NewsWidget\Assets\Newspaper.svg" />
-    <Content Include="CustomControls\NotesWidget\Assets\Notes.svg" />
-    <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
-    <Content Include="CustomControls\QuotesWidget\Assets\Quote.svg" />
-    <Content Include="CustomControls\TodoWidget\Assets\Delete.svg" />
-    <Content Include="CustomControls\TodoWidget\Assets\Todo.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\CaretDown.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\CaretUp.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Cloud.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Cubes.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Error.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\MapMarker.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Warning.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Moon.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Question.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Snowflake.svg" />
-    <Content Include="CustomControls\WeatherWidget\Assets\Tint.svg" />
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Properties\UnitTestApp.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
@@ -186,56 +151,18 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="CustomControls\ClockWidget\ClockWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\QuotesWidget\QuotesWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\NewsWidget\NewsWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\TodoWidget\TodoWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\NotesWidget\NotesWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\WeatherWidget\WeatherWidget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomControls\Widget.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.3</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>5.0.0</Version>
+    <PackageReference Include="Moq">
+      <Version>4.10.1</Version>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.1</Version>
+    <PackageReference Include="MSTest.TestAdapter">
+      <Version>1.4.0</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
+    <PackageReference Include="MSTest.TestFramework">
+      <Version>1.4.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DashboardLib\DashboardLib.csproj">
