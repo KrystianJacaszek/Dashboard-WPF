@@ -11,12 +11,12 @@ namespace DashboardLib.ViewModels
     {
         public TodoWidgetViewModel()
         {
-            storageController = JsonStorageService.Instance.CreateControllerForFile<TodoModel>(@"CustomControls\TodoWidget\Assets", "todolist.txt");
+            storageController = JsonStorageService.Instance.CreateControllerForFile<TodoModel>("todolist.txt");
         }
 
         public TodoWidgetViewModel(IJsonStorageService storageService)
         {
-            storageController = storageService.CreateControllerForFile<TodoModel>(@"CustomControls\TodoWidget\Assets", "todolist.txt");
+            storageController = storageService.CreateControllerForFile<TodoModel>("todolist.txt");
         }
 
         private IJsonStorageController<TodoModel> storageController;

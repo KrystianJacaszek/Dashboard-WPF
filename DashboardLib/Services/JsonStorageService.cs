@@ -8,7 +8,7 @@ namespace DashboardLib.Services
 {
     public interface IJsonStorageService
     {
-        IJsonStorageController<EntityType> CreateControllerForFile<EntityType>(string path, string filename);
+        IJsonStorageController<EntityType> CreateControllerForFile<EntityType>(string filename);
     }
 
     public class JsonStorageService : IJsonStorageService
@@ -28,9 +28,9 @@ namespace DashboardLib.Services
 
         private static JsonStorageService instance;
 
-        public IJsonStorageController<EntityType> CreateControllerForFile<EntityType>(string path, string filename)
+        public IJsonStorageController<EntityType> CreateControllerForFile<EntityType>(string filename)
         {
-            return new JsonStorageController<EntityType>(path, filename);
+            return new JsonStorageController<EntityType>(filename);
         }
     }
 
@@ -42,21 +42,18 @@ namespace DashboardLib.Services
 
     public class JsonStorageController<EntityType> : IJsonStorageController<EntityType>
     {
-        public JsonStorageController(string path, string fileName)
+        public JsonStorageController(string fileName)
         {
             this.fileName = fileName;
-            this.path = path;
         }
 
         private string fileName;
-        private string path;
 
         public async Task<List<EntityType>> LoadList()
         {
             List<EntityType> deserializedList = new List<EntityType>();
-
-            StorageFolder controllerSourceFolder = await getControllerSourceFolder();
-            StorageFile dataFile = (StorageFile) await controllerSourceFolder.TryGetItemAsync(fileName);
+            
+            StorageFile dataFile = (StorageFile) await ApplicationData.Current.LocalFolder.TryGetItemAsync(fileName);
 
             if (dataFile != null)
             {
@@ -71,17 +68,9 @@ namespace DashboardLib.Services
         public async Task SaveList(List<EntityType> list)
         {
             string json = JsonConvert.SerializeObject(list);
-
+            
             StorageFile dataFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(dataFile, json);
-
-            StorageFolder controllerSourceFolder = await getControllerSourceFolder();
-            await dataFile.MoveAsync(controllerSourceFolder, fileName, NameCollisionOption.ReplaceExisting);
-        }
-
-        private async Task<StorageFolder> getControllerSourceFolder()
-        {
-            return await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(path);
         }
     }
 }
