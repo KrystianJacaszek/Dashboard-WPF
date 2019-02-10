@@ -12,12 +12,12 @@ namespace DashboardLib.ViewModels
     {
         public NotesWidgetViewModel()
         {
-            storageController = JsonStorageService.Instance.CreateControllerForFile<NotesModel>(@"CustomControls\NotesWidget\Assets", "notes.txt");
+            storageController = JsonStorageService.Instance.CreateControllerForFile<NotesModel>("notes.txt");
         }
 
         public NotesWidgetViewModel(IJsonStorageService storageService)
         {
-            storageController = storageService.CreateControllerForFile<NotesModel>(@"CustomControls\TodoWidget\Assets", "notes.txt");
+            storageController = storageService.CreateControllerForFile<NotesModel>("notes.txt");
         }
 
         private IJsonStorageController<NotesModel> storageController;
