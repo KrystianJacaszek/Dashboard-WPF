@@ -8,47 +8,61 @@
     xmlns:customControls="using:Dashboard.CustomControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxHeight="700">
-        <Grid x:Name="LayoutRoot">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Grid.Row="0">
-                <customControls:Widget>
-                    <customControls:WeatherWidget />
-                </customControls:Widget>
+        <ScrollViewer
+            Grid.Column="0"
+            Grid.Row="0"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <customControls:Widget>
-                    <customControls:NotesWidget/>
-                </customControls:Widget>
-            </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1" Grid.Row="0">
-                <customControls:Widget>
-                    <customControls:ClockWidget />
-                </customControls:Widget>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <customControls:Widget>
+                        <customControls:WeatherWidget />
+                    </customControls:Widget>
 
-                <customControls:Widget>
-                    <customControls:TodoWidget/>
-                </customControls:Widget>
-            </StackPanel>
+                    <customControls:Widget>
+                        <customControls:NotesWidget/>
+                    </customControls:Widget>
+                </StackPanel>
 
-            <StackPanel Grid.Column="2" Grid.Row="0">
-                <customControls:Widget>
-                    <customControls:NewsWidget/>
-                </customControls:Widget>
+                <StackPanel Grid.Column="1" Grid.Row="0">
+                    <customControls:Widget>
+                        <customControls:ClockWidget />
+                    </customControls:Widget>
 
-                <customControls:Widget>
-                    <customControls:QuotesWidget />
-                </customControls:Widget>
-            </StackPanel>
-        </Grid>
-    </ScrollViewer>
+                    <customControls:Widget>
+                        <customControls:TodoWidget/>
+                    </customControls:Widget>
+
+                    <customControls:Widget>
+                        <customControls:QuotesWidget />
+                    </customControls:Widget>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="0">
+                    <customControls:Widget>
+                        <customControls:NewsWidget/>
+                    </customControls:Widget>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </Page>
