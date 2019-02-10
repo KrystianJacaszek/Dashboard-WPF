@@ -24,7 +24,7 @@ namespace DashboardLibTests
             jsonStorageControllerMock.Setup(jsonStorageController => jsonStorageController.SaveList(It.IsAny<List<NotesModel>>()));
 
             jsonStorageServiceMock = new Mock<IJsonStorageService>();
-            jsonStorageServiceMock.Setup(jsonStorageService => jsonStorageService.CreateControllerForFile<NotesModel>(It.IsAny<string>(), It.IsAny<string>())).Returns(jsonStorageControllerMock.Object);
+            jsonStorageServiceMock.Setup(jsonStorageService => jsonStorageService.CreateControllerForFile<NotesModel>(It.IsAny<string>())).Returns(jsonStorageControllerMock.Object);
 
             VM = new NotesWidgetViewModel(jsonStorageServiceMock.Object);
             await VM.Initialize();
@@ -57,7 +57,7 @@ namespace DashboardLibTests
         [UITestMethod]
         public void Initialize_Optimal()
         {
-            jsonStorageServiceMock.Verify(jsonStorageService => jsonStorageService.CreateControllerForFile<NotesModel>(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            jsonStorageServiceMock.Verify(jsonStorageService => jsonStorageService.CreateControllerForFile<NotesModel>(It.IsAny<string>()), Times.Once);
             jsonStorageControllerMock.Verify(jsonStorageController => jsonStorageController.LoadList(), Times.Once);
         }
 

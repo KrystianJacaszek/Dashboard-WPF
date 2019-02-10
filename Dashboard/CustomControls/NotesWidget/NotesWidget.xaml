@@ -81,7 +81,7 @@
         <TextBox x:Name="NotesTextBox" Grid.Column="0"
                  Grid.Row="2"
                  MinHeight="200"
-                 MaxLength="1000"
+                 MaxLength="500"
                  MaxHeight="650"
                  VerticalAlignment="Stretch"
                  HorizontalAlignment="Stretch"

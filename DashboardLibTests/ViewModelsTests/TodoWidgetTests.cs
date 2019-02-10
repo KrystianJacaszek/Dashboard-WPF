@@ -25,7 +25,7 @@ namespace DashboardLibTests
             jsonStorageControllerMock.Setup(jsonStorageController => jsonStorageController.SaveList(It.IsAny<List<TodoModel>>()));
 
             jsonStorageServiceMock = new Mock<IJsonStorageService>();
-            jsonStorageServiceMock.Setup(jsonStorageService => jsonStorageService.CreateControllerForFile<TodoModel>(It.IsAny<string>(), It.IsAny<string>())).Returns(jsonStorageControllerMock.Object);
+            jsonStorageServiceMock.Setup(jsonStorageService => jsonStorageService.CreateControllerForFile<TodoModel>(It.IsAny<string>())).Returns(jsonStorageControllerMock.Object);
 
             VM = new TodoWidgetViewModel(jsonStorageServiceMock.Object);
             await VM.Initialize();
@@ -67,7 +67,7 @@ namespace DashboardLibTests
         [UITestMethod]
         public void Initialize_Optimal()
         {
-            jsonStorageServiceMock.Verify(jsonStorageService => jsonStorageService.CreateControllerForFile<TodoModel>(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            jsonStorageServiceMock.Verify(jsonStorageService => jsonStorageService.CreateControllerForFile<TodoModel>(It.IsAny<string>()), Times.Once);
             jsonStorageControllerMock.Verify(jsonStorageController => jsonStorageController.LoadList(), Times.Once);
         }
 
