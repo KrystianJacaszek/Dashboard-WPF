@@ -23,12 +23,10 @@ namespace DashboardLib.ApiModules
             }
         }
 
-
         private readonly HttpClient httpClient;
         private static QuotesApi instance;
 
         private string apiUrl = "https://quotes.rest/qod";
-        private Rootobject Root { get; set; }
 
         public async Task<Rootobject> LoadQuotes(string url)
         {
@@ -48,46 +46,35 @@ namespace DashboardLib.ApiModules
                 }
             }
             return rootObject;
-        }
-
-        public async Task<Rootobject> Deserialize(string URL)
-        {
-            return await LoadQuotes(URL);
-        }
-
-        public async void CallAPI()
-        {
-            Root = await Deserialize(apiUrl);
-        }
-
-        public class Rootobject
-        {
-            public Success success { get; set; }
-            public Contents contents { get; set; }
-        }
-
-        public class Success
-        {
-            public int total { get; set; }
-        }
-
-        public class Contents
-        {
-            public Quote[] quotes { get; set; }
-        }
-
-        public class Quote
-        {
-            public string quote { get; set; }
-            public string length { get; set; }
-            public string author { get; set; }
-            public string[] tags { get; set; }
-            public string category { get; set; }
-            public string date { get; set; }
-            public string title { get; set; }
-            public string background { get; set; }
-            public string id { get; set; }
-        }
+        }  
     }
 
+    public class Rootobject
+    {
+        public Success success { get; set; }
+        public Contents contents { get; set; }
+    }
+
+    public class Success
+    {
+        public int total { get; set; }
+    }
+
+    public class Contents
+    {
+        public Quote[] quotes { get; set; }
+    }
+
+    public class Quote
+    {
+        public string quote { get; set; }
+        public string length { get; set; }
+        public string author { get; set; }
+        public string[] tags { get; set; }
+        public string category { get; set; }
+        public string date { get; set; }
+        public string title { get; set; }
+        public string background { get; set; }
+        public string id { get; set; }
+    }
 }

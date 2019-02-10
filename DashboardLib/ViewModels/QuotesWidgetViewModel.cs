@@ -57,7 +57,7 @@ namespace DashboardLib.ViewModels
 
         public override async Task Initialize()
         {
-            QuotesApi.Rootobject quotesData = await quotesApi.LoadQuotes("a");
+            Rootobject quotesData = await quotesApi.LoadQuotes("a");
 
             if (quotesData != null)
             {
