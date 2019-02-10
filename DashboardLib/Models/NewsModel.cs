@@ -14,6 +14,7 @@ namespace DashboardLib.Models
             this.newsText = newsText;
             this.newsSource = newsSource;
             this.image = image;
+            this.content = content;
         }
 
         private NewsApi newsApi = NewsApi.Instance;
@@ -28,7 +29,18 @@ namespace DashboardLib.Models
         private string image;
         private string content;
 
-        public string Description => newsText != null ? newsText : content;
+        public string Description
+        {
+            get
+            {
+                if (newsText != null || newsText != "")
+                    return newsText;
+                else if (content != null || content != "")
+                    return content;
+                else
+                    return "Click the link above.";
+            }
+        }
 
         public string Title
         {
@@ -52,12 +64,6 @@ namespace DashboardLib.Models
         {
             get { return newsSource; }
             set { if (value != newsSource) { newsSource = value; NotifyPropertyChanged("NewsSource"); } }
-        }
-
-        public string NewsText
-        {
-            get { return newsText; }
-            set { if (value != newsText) { newsText = value; NotifyPropertyChanged("NewsText"); } }
         }
 
         public string Image

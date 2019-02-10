@@ -11,7 +11,6 @@ namespace DashboardLib.ViewModels
     {
         private NewsApi newsApi = NewsApi.Instance;
 
-
         public void ChangePage(sbyte modifier)
         {
             short targetPage = Convert.ToInt16(CurrentPage + modifier);
@@ -20,7 +19,6 @@ namespace DashboardLib.ViewModels
                 CurrentPage += modifier;
             }
         }
-
 
         public override async Task Initialize()
         {

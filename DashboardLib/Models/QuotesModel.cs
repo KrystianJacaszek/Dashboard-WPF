@@ -48,5 +48,4 @@ namespace DashboardLib.Models
         public string Author { get; set; }
         public string Quote { get; set; }
     }
-
 }

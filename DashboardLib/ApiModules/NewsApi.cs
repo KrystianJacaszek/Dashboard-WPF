@@ -24,7 +24,6 @@ namespace DashboardLib.ApiModules
             }
         }
 
-
         private readonly HttpClient httpClient;
         private static NewsApi instance;
 
@@ -35,11 +34,11 @@ namespace DashboardLib.ApiModules
             string url = string.Empty;
 
             urlList.Add("https://newsapi.org/v2/top-headlines?country=pl&category=sports&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
-            urlList.Add("https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
-            urlList.Add("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
-            urlList.Add("https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
-            urlList.Add("https://newsapi.org/v2/top-headlines?country=pl&category=business&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
             urlList.Add("https://newsapi.org/v2/top-headlines?country=pl&category=entertainment&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
+            urlList.Add("https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
+            urlList.Add("https://newsapi.org/v2/top-headlines?country=pl&category=business&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
+            urlList.Add("https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
+            urlList.Add("https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=3d9608e2e5044857984732bfb6c0e0b2");
 
             foreach (string x in urlList)
             {
@@ -48,7 +47,6 @@ namespace DashboardLib.ApiModules
 
             return url;
         }
-
 
         public async Task<Rootobject> LoadNews(string url)
         {
@@ -69,8 +67,6 @@ namespace DashboardLib.ApiModules
             }
             return rootObject;
         }
-
-
 
         public class Rootobject
         {

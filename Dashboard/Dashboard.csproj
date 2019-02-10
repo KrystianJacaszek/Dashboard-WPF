@@ -130,7 +130,7 @@
     </Compile>
     <Compile Include="CustomControls\QuotesWidget\QuotesWidget.xaml.cs">
       <DependentUpon>QuotesWidget.xaml</DependentUpon>
-      </Compile>
+    </Compile>
     <Compile Include="CustomControls\NewsWidget\NewsWidget.xaml.cs">
       <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
@@ -158,10 +158,10 @@
     <None Include="Dashboard_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomControls\NewsWidget\Assets\newspaper.svg" />
+    <Content Include="CustomControls\NewsWidget\Assets\Newspaper.svg" />
     <Content Include="CustomControls\NotesWidget\Assets\Notes.svg" />
     <Content Include="CustomControls\ClockWidget\Assets\Clock.svg" />
-    <Content Include="CustomControls\QuotesWidget\Assets\quote-right.svg" />
+    <Content Include="CustomControls\QuotesWidget\Assets\Quote.svg" />
     <Content Include="CustomControls\TodoWidget\Assets\Delete.svg" />
     <Content Include="CustomControls\TodoWidget\Assets\Todo.svg" />
     <Content Include="CustomControls\WeatherWidget\Assets\Bolt.svg" />
